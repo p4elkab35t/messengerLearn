@@ -1,0 +1,387 @@
+openapi: "3.0.2"
+info:
+  title: Messenger API
+  version: "0.9.0"
+  description: API for messenger on Node.js + Typescript
+servers:
+  - url: http://127.0.0.1:3000
+    description: Local server
+  - url: https://messenger.com
+    description: Production server
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: JSESSIONID
+security:
+  - cookieAuth: []
+paths:
+  /login:
+    get:
+      security: []
+
+      responses:
+        "200":
+          description: OK
+    post:
+      parameters:
+        - name: login
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+  /register:
+    get:
+      security: []
+      responses:
+        "200":
+          description: OK
+    post:
+      parameters:
+        - name: login
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+  /chat:
+    get:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+  /message:
+    get:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: userToken
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: chatID
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    post:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: time
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: userToken
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: chatID
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    put:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: message
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: time
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: userToken
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: chatID
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    delete:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: userToken
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: chatID
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+  /profile:
+    get:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    put:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: token
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: profilePicture
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    post:
+      parameters:
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: profilePicture
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+  /image:
+    get:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+                properties:
+                  image:
+                    type: string
+                    format: binary
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    post:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: image
+          in: header
+          required: true
+          schema:
+            type: string
+            format: binary
+        - name: userToken
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
+    delete:
+      parameters:
+        - name: id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: userToken
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: chatID
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad request
+        "404":
+          description: Not found
+        "403":
+          description: Forbidden
