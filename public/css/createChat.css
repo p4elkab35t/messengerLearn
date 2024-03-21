@@ -1,0 +1,60 @@
+.modal {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 50px;
+    border-radius: 5px;
+    /* height: 600px; */
+    max-width: 30%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: 0.5s modalSlideIn forwards;
+}
+
+.modal.close {
+    animation: 0.5s modalSlideOut forwards;
+}
+
+.modal input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    text-align: center;
+    border-radius: 3px;
+    background: #f2f2f2;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.modal button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 3px;
+    background: #f2f2f2;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translate(-50%, -500%);
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes modalSlideOut {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    100% {
+        transform: translate(-50%, -500%);
+    }
+}

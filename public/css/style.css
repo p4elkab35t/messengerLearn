@@ -1,0 +1,85 @@
+/* * {
+    overflow-x: hidden;
+} */
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f4f4f4;
+    /* border: 1px solid red; */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body>main {
+    flex-grow: 1;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    height: 3em;
+}
+
+.btn {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #333;
+    color: #fff;
+    min-height: fit-content;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.btn:hover {
+    color: #f44;
+}
+
+/* .btn:active {
+    top: 1px;
+} */
+
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 1.5em;
+    height: 1.5em;
+    z-index: 1000;
+    /* padding: 10px; */
+    text-align: center;
+    line-height: 1.5em;
+    font-size: 2.5em;
+    border-radius: 50%;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+}
+
+.first-letter {
+    color: #f44;
+
+}
+
+main {
+    /* padding: 20px; */
+    margin-top: calc(3em + 20px);
+    width: 100%;
+    /* border: 1px solid #333; */
+}

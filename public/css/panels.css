@@ -1,0 +1,223 @@
+/* Sliding Profile Panel */
+
+body {
+    overflow: hidden;
+}
+
+.panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.5em;
+    /* left: -300px; */
+    /* Adjust the value to control the initial position */
+    width: 300px;
+    height: 100vh;
+    background-color: #f1f1f1;
+    transition: right 0.3s ease-in-out;
+    animation: panelSlide 0.3s forwards;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.panel.panelClose {
+    animation: panelSlideOut 0.3s forwards;
+
+}
+
+.panel img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    margin: 20px 0;
+
+}
+
+.panel .block_btn {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #f44;
+    background-color: transparent;
+    /* font-weight: bold; */
+    /* color: #fff; */
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+
+.panel .block_btn:hover {
+    color: #f66;
+}
+
+.panel h2 {
+    margin-top: 0;
+    padding: 20px;
+}
+
+.panel input[type="text"] {
+    margin: 20px;
+    padding: 20px;
+    font-size: 1.5em;
+    height: 1.5em;
+    max-width: 80%;
+    text-align: center;
+    background-color: transparent;
+    border-bottom: 1px solid #333;
+}
+
+.panel .panelMainContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: left;
+    overflow-y: auto;
+}
+
+.panel .commonChatsContainer h3 {
+    margin: 0;
+    padding: 30px;
+    /* font-size: 1.5em; */
+    /* color: #44f; */
+
+}
+
+.panel .commonChatsContainer a {
+    text-decoration: none;
+    color: #44f;
+    font-size: 0.75em;
+    padding: 0;
+    margin: 0;
+    padding-left: 30px;
+    display: block;
+}
+
+.panel.right {
+    left: auto;
+    right: -300px;
+    animation: panelSlideOut 0.3s forwards;
+}
+
+.panel.right.panelClose {
+    animation: panelSlide 0.3s forwards;
+}
+
+/* .panel .settingsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: left;
+    width: 100%;
+    padding: 20px;
+} */
+
+/* .panel .settingsContainer label[for="switch"] {
+    margin: 0;
+    /* padding: 30px; */
+/* font-size: 1.5em; */
+/* color: #44f; */
+
+/* } */
+@keyframes panelSlide {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes panelSlideOut {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.settingsContainer h2 {
+    align-self: center;
+}
+
+.switchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0px 20px 0px;
+    /* align-items: left; */
+    width: 100%;
+    /* padding: 20px; */
+}
+
+.switchContainer h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    color: #333;
+
+}
+
+.settingsContainer a {
+    text-decoration: none;
+    color: #44f;
+    font-size: 0.95em;
+    padding: 0;
+    margin: 10px 0;
+    /* padding-left: 30px; */
+    display: block;
+
+}
+
+label {
+    width: 50px;
+    height: 25px;
+    position: relative;
+    margin-left: 50px;
+    display: block;
+    background: #f2f2f2;
+    border-radius: 50px;
+    /* box-shadow: inset 0px 1.5px 5px rgba(0, 0, 0, 0.4),
+        inset 0px -1.5px 5px rgba(255, 255, 255, 0.4); */
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+label:after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    left: 2px;
+    top: 0.5px;
+    position: absolute;
+    /* background: linear-gradient(180deg, #ffcc89, #d8860b); */
+    border-radius: 25px;
+    /* box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2); */
+    transition: 0.3s;
+}
+
+input:checked+label {
+    background: #242424;
+}
+
+input:checked+label:after {
+    left: 50px;
+    transform: translate(-100%);
+    /* background: linear-gradient(180deg, #777, #3a3a3a); */
+}
+
+label:active:after {
+    width: 30px;
+}

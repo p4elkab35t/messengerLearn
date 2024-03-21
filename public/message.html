@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMP Messenger</title>
+  <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="C:\Users\mega-\OneDrive\Desktop\chatpage\Style.css"
+    /> -->
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+
+  #wrapper {
+    max-width: 900px;
+    min-height: 600px;
+    margin: 20px auto;
+    background-color: #fffffffe;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #header {
+    order: 1;
+    height: 30px;
+    background-color: rgb(211, 211, 211);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #userPanel {
+    order: 4;
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(211, 211, 211);
+  }
+
+  #matePanel {
+    width: 150px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(211, 211, 211);
+    position: relative;
+    z-index: 1;
+  }
+
+  #messageArea {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    border: 1px solid #ffffff;
+    padding: 10px;
+    max-height: calc(100vh - 130px);
+  }
+
+  #inputArea {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  #messageInputContainer {
+    display: flex;
+    flex: 1;
+    position: relative;
+  }
+
+  #messageInput {
+    flex-grow: 1;
+    padding: 8px;
+    padding-right: 60px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+  }
+
+  #sendButton {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px 15px;
+    margin: 0;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  #chatInput {
+    border-radius: 20px;
+    padding: 1px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  label {
+    width: 50px;
+    height: 25px;
+    position: relative;
+    margin-left: 50px;
+    display: block;
+    background: #f2f2f2;
+    border-radius: 50px;
+    box-shadow: inset 0px 1.5px 5px rgba(0, 0, 0, 0.4),
+      inset 0px -1.5px 5px rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  label:after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    left: 2px;
+    top: 0.5px;
+    position: absolute;
+    background: linear-gradient(180deg, #ffcc89, #d8860b);
+    border-radius: 25px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+
+  input:checked+label {
+    background: #242424;
+  }
+
+  input:checked+label:after {
+    left: 50px;
+    transform: translate(-100%);
+    background: linear-gradient(180deg, #777, #3a3a3a);
+  }
+
+  label:active:after {
+    width: 30px;
+  }
+
+  .background {
+    background: #fff;
+    transition: 0.3s;
+  }
+
+  input:checked+label+.background {
+    background: #242424;
+  }
+
+  #menuIcon {
+    font-size: 24px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #333;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .speech-bubble {
+    background-color: rgb(211, 211, 211);
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 140%;
+    /* збільшення ширини вдвічі */
+    position: relative;
+    margin: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .speech-bubble:before {
+    content: "";
+    position: absolute;
+    bottom: 30px;
+    /* Центрування відносно висоти бульбашки */
+    left: 0px;
+    /* Відступ стрілки від лівого краю бульбашки */
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    /* Робимо куточок вдвічі більшим */
+    border-right: 20px solid rgb(211, 211, 211);
+    /* Колір фону speech bubble */
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+  }
+
+  .speech-bubble.right {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  .speech-bubble.right:before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: rgb(211, 211, 211);
+    /* Колір фону speech bubble */
+    border-right: none;
+    border-bottom: none;
+    border-left-color: transparent;
+    /* Робить ліву сторону прозорою */
+    transform: rotate(90deg);
+    /* Поворот трикутника на 180 градусів */
+  }
+</style>
+
+<body>
+  <div id="wrapper">
+    <div class="background" id="header">
+      <button id="toggleMatePanel">Мате</button>
+      <button id="toggleUserPanel">User</button>
+      <div id="menuIcon">•••</div>
+      <input type="text" id="chatInput" placeholder="Chat link" />
+    </div>
+    <div class="background hidden" id="matePanel">
+      <img src="C:\Users\mega-\OneDrive\Desktop\chatpage\mate_photo.png" style="
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-top: 30px;
+          " />
+      <p style="padding-top: 10px">Christopher Davies</p>
+      <br />
+      <p style="text-align: left; font-size: 15px">Common chats</p>
+      <a href="javascript:void(0)" onclick="openEditWindow()" style="font-size: 10px; margin-right: 50px">Chat for
+        friends</a><br />
+      <a href="javascript:void(0)" onclick="openEditWindow()" style="font-size: 10px; margin-right: 66px">Study
+        group</a><br />
+      <a href="javascript:void(0)" onclick="openEditWindow()" style="font-size: 10px; margin-right: 57px">Project
+        group</a>
+      <p style="color: #b53131; margin-top: 200px">Block User</p>
+    </div>
+    <div id="messageArea">
+      <div id="inputArea">
+        <div id="messageInputContainer">
+          <input type="text" id="messageInput" placeholder="Type your message..." />
+          <button id="sendButton" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="background hidden" id="userPanel">
+      <img src="C:\Users\mega-\OneDrive\Desktop\chatpage\user_photo.webp" style="
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-top: 30px;
+          " />
+      <br />
+      <p style="padding-top: 10px">Pedro Gonzalez</p>
+      <br />
+      <p style="margin-right: 90px; font-size: 15px">Theme</p>
+      <input style="visibility: hidden" type="checkbox" id="switch" class="checkbox" />
+
+      <label for="switch"></label>
+      <p style="margin-right: 90px; margin-bottom: 15px; font-size: 15px">
+        Profile
+      </p>
+      <a href="javascript:void(0)" onclick="openEditWindow()" style="font-size: 10px; margin-left: 50px">Edit
+        username</a>
+      <a href="javascript:void(0)" onclick="openEditWindow()" style="font-size: 10px; margin-left: 37px">Edit profile
+        picture</a>
+    </div>
+  </div>
+
+  <script>
+    var toggleSwitch = document.getElementById("switch");
+    toggleSwitch.addEventListener("change", Theme);
+
+    function Theme() {
+      var body = document.body;
+      var matePanel = document.getElementById("matePanel");
+      var userPanel = document.getElementById("userPanel");
+      var wrapper = document.getElementById("wrapper");
+      var header = document.getElementById("header");
+      var menuIcon = document.getElementById("menuIcon");
+
+      if (toggleSwitch.checked) {
+        // Dark mode
+        body.classList.add("dark-mode");
+        body.classList.remove("light-mode");
+        matePanel.style.backgroundColor = "#676767"; // Зміна кольору matePanel на чорний
+        userPanel.style.backgroundColor = "#676767"; // Зміна кольору userPanel на чорний
+        wrapper.style.backgroundColor = "#dadada";
+        header.style.backgroundColor = "#676767";
+        menuIcon.style.color = "white";
+      } else {
+        // Light mode
+        body.classList.add("light-mode");
+        body.classList.remove("dark-mode");
+        matePanel.style.backgroundColor = "rgb(211, 211, 211)"; // Повернення коліру matePanel на вихідний
+        userPanel.style.backgroundColor = "rgb(211, 211, 211)"; // Повернення коліру userPanel на вихідний
+        wrapper.style.backgroundColor = "white";
+        header.style.backgroundColor = "rgb(211, 211, 211)";
+        menuIcon.style.color = "#333";
+      }
+    }
+
+    function openEditWindow() {
+      alert("Logic to open edit window here");
+    }
+    function sendMessage() {
+      var messageInput = document.getElementById("messageInput");
+      var messageText = messageInput.value.trim();
+
+      if (messageText !== "") {
+        var messageArea = document.getElementById("messageArea");
+        var newMessage = document.createElement("div");
+
+        // Отримання поточного часу
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+
+        // Додавання тексту повідомлення та часу написання
+        newMessage.className = "speech-bubble right";
+        newMessage.textContent = "[" + timeString + "] " + messageText;
+        messageArea.appendChild(newMessage);
+
+        // Очистка поля вводу
+        messageInput.value = "";
+
+        messageArea.scrollTop = messageArea.scrollHeight;
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("toggleMatePanel")
+        .addEventListener("click", function () {
+          var panel = document.getElementById("matePanel");
+          panel.classList.toggle("hidden");
+        });
+
+      document
+        .getElementById("toggleUserPanel")
+        .addEventListener("click", function () {
+          var panel = document.getElementById("userPanel");
+          panel.classList.toggle("hidden");
+        });
+    });
+  </script>
+</body>
+
+</html>

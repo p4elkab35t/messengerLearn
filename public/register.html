@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="reg.css">
+    <link rel="stylesheet" href="css/alert.css">
+</head>
+
+<body>
+    <div class="register-container">
+        <h1><span class="first-letter" style="color: #f44">M</span>essenger.</h1>
+        <form name="register-details" id="register-details" action="#" method="POST">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label id="pass_lbl" for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button id="register-btn" type="submit">Register.</button>
+            </div>
+
+        </form>
+        <div>
+            <a href="Login.html">Login.</a>
+        </div>
+    </div>
+    <script src="register.js"></script>
+    <script src="js/alert.js"></script>
+</body>
+
+</html>

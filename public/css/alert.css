@@ -1,0 +1,80 @@
+.alertBox {
+    position: absolute;
+    top: calc(3em + 20px);
+    min-width: 0;
+    max-width: max-content;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* flex-wrap: nowrap; */
+    z-index: 10000;
+}
+
+.alert {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    display: flex;
+    min-width: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    /* min-width: min-content; */
+    /* max-width: 30%; */
+    word-break: break-all;
+    max-width: 100%;
+    color: #333;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+    animation: 3s slideOut forwards;
+}
+
+.alert.success {
+    color: #4CAF50;
+    background-color: white;
+}
+
+.alert.success:before {
+    content: "✔️";
+    margin-right: 10px;
+}
+
+.alert.info {
+    background-color: #2196F3;
+    color: white;
+}
+
+.alert.warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+.alert.danger {
+    color: #f44336;
+    background-color: white;
+}
+
+.alert.danger:before {
+    content: "❌";
+    margin-right: 10px;
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(-150%);
+    }
+
+    10% {
+        transform: translateX(0%);
+    }
+
+    90% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
